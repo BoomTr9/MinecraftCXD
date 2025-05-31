@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: VPS
+    env: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./Dockerfile
+    buildCommand: ""
+    startCommand: ""
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_KEY
+        value: "base64:..."  # ใช้ php artisan key:generate --show
+      - key: APP_DEBUG
+        value: false
