@@ -1,0 +1,29 @@
+app = "VPS"
+
+primary_region = "sin" # เปลี่ยนเป็นภูมิภาคใกล้คุณ เช่น hkg, sin, syd, etc.
+
+[build]
+  image = "php:8.2-apache"
+
+[env]
+  APP_ENV = "production"
+  APP_KEY = ""
+  APP_DEBUG = "false"
+  LOG_CHANNEL = "stderr"
+
+[[services]]
+  internal_port = 80
+  protocol = "tcp"
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [services.concurrency]
+    type = "requests"
+    soft_limit = 25
+    hard_limit = 50
